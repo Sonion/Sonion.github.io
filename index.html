@@ -274,6 +274,28 @@
           </span>
 
           
+            <span class="post-category">
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/RocketMQ/" itemprop="url" rel="index">
+                    <span itemprop="name">RocketMQ</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
 
           
             
@@ -303,7 +325,7 @@
       
         
           
-            <h2 id="消息路由机制"><a href="#消息路由机制" class="headerlink" title="消息路由机制"></a>消息路由机制</h2><p><img src="evernotecid://E5E21610-3F57-4C5F-8346-9DEDE6ED9249/appyinxiangcom/25335004/ENResource/p25" alt="671cc1069fcb389ce1e284f851822c18.png"></p>
+            <h2 id="消息路由机制"><a href="#消息路由机制" class="headerlink" title="消息路由机制"></a>消息路由机制</h2><p><img src="../picture/RocketMQ%E6%80%BB%E8%A7%88.jpg" alt="RocketMQ架构图"></p>
 <p>Broker 服务器在启动时向所有 Namesrv 注册，Producer 在发送消息之前先从 Namesrv 获取 Broker 服务器地址列表，然后根据负载算法从列表中选择一台消息服务器进行消息发送。Namesrv 与每台 Broker 服务器保持长连接，并间隔 30s 检测 Broker 是否存活，如果检测到 Broker 宕机则从路由注册表中将其移除。</p>
 <p>Namesrv 是RocketMQ的寻址服务。用于把 Broker的路由信息做聚合。客户端依靠 Namesrv 决定去获取对应topic的路由信息，从而决定对哪些 Broker 做连接。</p>
 <ul>
@@ -337,165 +359,26 @@
 <li>Namesrv 每隔1Os扫描一次 Broker，移除处于不激活状态的 Broker。</li>
 <li>Namesrv 每隔10分钟打印一次KV配置。</li>
 </ol>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><ol>
-<li>Namesrv 是否支持动态添加？</li>
-</ol>
-<blockquote>
+<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="Namesrv-是否支持动态添加？"><a href="#Namesrv-是否支持动态添加？" class="headerlink" title="Namesrv 是否支持动态添加？"></a>Namesrv 是否支持动态添加？</h4><blockquote>
 <p>解答：在启动 Broker 和 Clients 之前，我们需要提供的一个 Namesrv 地址列表来访问 Namesrv。在RocketMQ中，可以用四种方式完成。</p>
-<ul>
+<ol>
 <li>Programmatic Way<br>Broker 的配置文件中 broker.conf 指定 namesrvAddr=name-server-ip1:port;name-server-ip2:port</li>
 <li>Java Options<br>Java启动参数配置 rocketmq.namesrvv.addr</li>
 <li>Environment Variable<br>添加环境变量 NAMESRV_ADDR</li>
-<li>HTTP Endpoint<br>如果没有使用前面提到的方法指定名称服务器地址列表，RocketMQ将以每2分钟访问HTTP端点一次以获取和更新名称服务器地址列表，初始延迟10秒。<br>默认情况下，终点是：<code>http://jmenv.tbsite.net:8080/rocketmq/nsaddr</code><br>可以使用这个Java选项：rocketmq.namesrv.domain 覆盖 jmenv.tbsite.net ，你也可以使用这个Java选项 rocketmq.namesrv.domain.subgroup 覆盖 nsaddr 部分<br>如果在生产环境中运行RocketMQ<br>建议使用此方法，因为它提供了最大的灵活性——您可以动态地添加或删除名称服务器节点，而无需根据 Namesrv 的系统负载重新启动代理和客户端。<blockquote>
+<li>HTTP Endpoint<br>如果没有使用前面提到的方法指定名称服务器地址列表，RocketMQ将以每2分钟访问HTTP端点一次以获取和更新名称服务器地址列表，初始延迟10秒。<br>默认情况下，终点是：<code>http://jmenv.tbsite.net:8080/rocketmq/nsaddr</code><br>可以使用这个Java选项：rocketmq.namesrv.domain 覆盖 jmenv.tbsite.net ，你也可以使用这个Java选项 rocketmq.namesrv.domain.subgroup 覆盖 nsaddr 部分<br>如果在生产环境中运行RocketMQ<br>建议使用此方法，因为它提供了最大的灵活性——您可以动态地添加或删除名称服务器节点，而无需根据 Namesrv 的系统负载重新启动代理和客户端。</li>
+</ol>
+</blockquote>
+<blockquote>
+<blockquote>
 <p>优先级：（首先介绍的方法优先于后一种方法）<br>Programmatic Way &gt; Java Options &gt; Environment Variable &gt; HTTP Endpoint</p>
 </blockquote>
-</li>
-</ul>
 </blockquote>
-<ol start="2">
-<li>因为 Producer 定时拉取 Namesrv 上 Broker 信息，就会存在 Namesrv 根据主题获取路由信息包含宕机的Broker，会导致消息发送失败，那么这种情况怎么处理？</li>
-</ol>
-<blockquote>
+<h4 id="因为-Producer-定时拉取-Namesrv-上-Broker-信息，就会存在-Namesrv-根据主题获取路由信息包含宕机的Broker，会导致消息发送失败，那么这种情况怎么处理？"><a href="#因为-Producer-定时拉取-Namesrv-上-Broker-信息，就会存在-Namesrv-根据主题获取路由信息包含宕机的Broker，会导致消息发送失败，那么这种情况怎么处理？" class="headerlink" title="因为 Producer 定时拉取 Namesrv 上 Broker 信息，就会存在 Namesrv 根据主题获取路由信息包含宕机的Broker，会导致消息发送失败，那么这种情况怎么处理？"></a>因为 Producer 定时拉取 Namesrv 上 Broker 信息，就会存在 Namesrv 根据主题获取路由信息包含宕机的Broker，会导致消息发送失败，那么这种情况怎么处理？</h4><blockquote>
 <p>解答：消息发送队列负载默认采用轮询机制，消息发送时默认选择重试机制来保证消息发送的高可用。当 Broker 宕机后，虽然消息发送者无法第一时间感知 Broker 宕机，但是当消息发送者向 Broker 发送消息返回异常后，生产者会在接下来一定时间内，例如5分钟内不会再次选择该 Broker上的队列，这样就规避了发生故障的 Broker，结合重试机制，巧妙实现消息发送的高可用。</p>
 </blockquote>
-<ol start="3">
-<li>RocketMQ为什么不使用ZooKeeper？<blockquote>
+<h4 id="RocketMQ为什么不使用ZooKeeper？"><a href="#RocketMQ为什么不使用ZooKeeper？" class="headerlink" title="RocketMQ为什么不使用ZooKeeper？"></a>RocketMQ为什么不使用ZooKeeper？</h4><blockquote>
 <p>解答：这个问题首先我们来看 ZooKeeper 能实现什么，选举、Node节点、数据强一致性，但是 Namesrv 采取share-nothing的设计，都是无状态节点，节点之间消息不需要同步数据，再者都是非持久化方式存储，综合考虑。</p>
 </blockquote>
-</li>
-</ol>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/hello-world/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="青云">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="电子卖场技术团队">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/29/hello-world/" itemprop="url">Hello World</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T21:57:13+08:00">
-                2019-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
-          
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
-        </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
 
           
         
@@ -577,14 +460,32 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">1</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
             
 
             
+              
+              
+              <div class="site-state-item site-state-categories">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">categories</span>
+                
+              </div>
+            
 
+            
+              
+              
+              <div class="site-state-item site-state-tags">
+                
+                  <span class="site-state-item-count">1</span>
+                  <span class="site-state-item-name">tags</span>
+                
+              </div>
             
 
           </nav>
