@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT">
+  <meta name="keywords" content="RocketMQ于Kafka存储比较,">
 
 
 
@@ -79,16 +79,24 @@
 
 
 
-<meta name="description" content="电子卖场文章存档">
-<meta property="og:type" content="website">
-<meta property="og:title" content="政采云-电子卖场技术团队">
-<meta property="og:url" content="http://yoursite.com/index.html">
+<meta name="description" content="MQ初窥门径全称(message queue)消息队列,一个用于接收消息、存储消息并转发消息的中间件 应用场景用于解决的场景，总之是能接收消息并转发消息  用于异步处理，比如A服务做了什么事情，异步发送一个消息给其他B服务。  用于削峰，有些服务(秒杀)，请求量很高，服务处理不过来，那么请求先放到消息队列里面，后面按照能力处理，相当于蓄水池。  应用解耦、消息通讯等等   总之MQ是可以存放消息并">
+<meta name="keywords" content="RocketMQ于Kafka存储比较">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MQ初窥门径">
+<meta property="og:url" content="http://yoursite.com/2019/09/15/MQ初窥门径/index.html">
 <meta property="og:site_name" content="政采云-电子卖场技术团队">
-<meta property="og:description" content="电子卖场文章存档">
+<meta property="og:description" content="MQ初窥门径全称(message queue)消息队列,一个用于接收消息、存储消息并转发消息的中间件 应用场景用于解决的场景，总之是能接收消息并转发消息  用于异步处理，比如A服务做了什么事情，异步发送一个消息给其他B服务。  用于削峰，有些服务(秒杀)，请求量很高，服务处理不过来，那么请求先放到消息队列里面，后面按照能力处理，相当于蓄水池。  应用解耦、消息通讯等等   总之MQ是可以存放消息并">
 <meta property="og:locale" content="zh">
+<meta property="og:image" content="https://raw.githubusercontent.com/Sonion/Sonion.github.io/master/picture/MQ%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84-%E5%9B%BE1.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Sonion/Sonion.github.io/master/picture/MQ%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84-%E5%9B%BE2.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Sonion/Sonion.github.io/master/picture/MQ%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84-%E5%9B%BE3.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Sonion/Sonion.github.io/master/picture/MQ%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84-%E5%9B%BE4.jpg">
+<meta property="og:image" content="https://raw.githubusercontent.com/Sonion/Sonion.github.io/master/picture/MQ%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84-%E5%9B%BE5.jpg">
+<meta property="og:updated_time" content="2019-09-16T01:47:03.174Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="政采云-电子卖场技术团队">
-<meta name="twitter:description" content="电子卖场文章存档">
+<meta name="twitter:title" content="MQ初窥门径">
+<meta name="twitter:description" content="MQ初窥门径全称(message queue)消息队列,一个用于接收消息、存储消息并转发消息的中间件 应用场景用于解决的场景，总之是能接收消息并转发消息  用于异步处理，比如A服务做了什么事情，异步发送一个消息给其他B服务。  用于削峰，有些服务(秒杀)，请求量很高，服务处理不过来，那么请求先放到消息队列里面，后面按照能力处理，相当于蓄水池。  应用解耦、消息通讯等等   总之MQ是可以存放消息并">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/Sonion/Sonion.github.io/master/picture/MQ%E5%88%9D%E7%AA%A5%E9%97%A8%E5%BE%84-%E5%9B%BE1.jpg">
 
 
 
@@ -118,13 +126,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/">
+  <link rel="canonical" href="http://yoursite.com/2019/09/15/MQ初窥门径/">
 
 
 
 
 
-  <title>政采云-电子卖场技术团队</title>
+  <title>MQ初窥门径 | 政采云-电子卖场技术团队</title>
   
 
 
@@ -143,8 +151,7 @@
     
   
 
-  <div class="container sidebar-position-left 
-  page-home">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -217,9 +224,9 @@
         <div class="content-wrap">
           <div id="content" class="content">
             
-  <section id="posts" class="posts-expand">
+
+  <div id="posts" class="posts-expand">
     
-      
 
   
 
@@ -249,9 +256,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/09/15/MQ初窥门径/" itemprop="url">MQ初窥门径</a></h1>
+          <h1 class="post-title" itemprop="name headline">MQ初窥门径</h1>
         
 
         <div class="post-meta">
@@ -323,9 +328,7 @@
       
 
       
-        
-          
-            <h1 id="MQ初窥门径"><a href="#MQ初窥门径" class="headerlink" title="MQ初窥门径"></a>MQ初窥门径</h1><p>全称(message queue)消息队列,一个用于接收消息、存储消息并转发消息的中间件</p>
+        <h1 id="MQ初窥门径"><a href="#MQ初窥门径" class="headerlink" title="MQ初窥门径"></a>MQ初窥门径</h1><p>全称(message queue)消息队列,一个用于接收消息、存储消息并转发消息的中间件</p>
 <h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p>用于解决的场景，总之是能接收消息并转发消息</p>
 <ol>
 <li><p>用于异步处理，比如A服务做了什么事情，异步发送一个消息给其他B服务。</p>
@@ -381,8 +384,6 @@
 <p>2、kafka中多partition会存在随机写的可能性，partition之间刷盘的冲撞率会高，但是rocketmq中commitLog都是顺序写。</p>
 </blockquote>
 
-          
-        
       
     </div>
     
@@ -397,209 +398,36 @@
 
     <footer class="post-footer">
       
-
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </div>
-  
-  
-  
-  </article>
-
-
-    
-      
-
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-  
-  
-  
-  <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/08/29/RocketMQ路由机制/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="name" content="青云">
-      <meta itemprop="description" content>
-      <meta itemprop="image" content="/images/avatar.gif">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="政采云-电子卖场技术团队">
-    </span>
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-                
-                <a class="post-title-link" href="/2019/08/29/RocketMQ路由机制/" itemprop="url">RocketMQ路由机制</a></h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-calendar-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">Posted on</span>
-              
-              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-08-29T22:40:40+08:00">
-                2019-08-29
-              </time>
-            
-
-            
-
-            
-          </span>
-
+        <div class="post-tags">
           
-            <span class="post-category">
-            
-              <span class="post-meta-divider">|</span>
-            
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              
-                <span class="post-meta-item-text">In</span>
-              
-              
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/RocketMQ/" itemprop="url" rel="index">
-                    <span itemprop="name">RocketMQ</span>
-                  </a>
-                </span>
-
-                
-                
-              
-            </span>
+            <a href="/tags/RocketMQ于Kafka存储比较/" rel="tag"># RocketMQ于Kafka存储比较</a>
           
-
-          
-            
-          
-
-          
-          
-
-          
-
-          
-
-          
-
         </div>
-      </header>
-    
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h2 id="消息路由机制"><a href="#消息路由机制" class="headerlink" title="消息路由机制"></a>消息路由机制</h2><p><img src="https://raw.githubusercontent.com/Sonion/Sonion.github.io/master/picture/RocketMQ%E6%80%BB%E8%A7%88.jpg" alt="RocketMQ架构图"></p>
-<p>Broker 服务器在启动时向所有 Namesrv 注册，Producer 在发送消息之前先从 Namesrv 获取 Broker 服务器地址列表，然后根据负载算法从列表中选择一台消息服务器进行消息发送。Namesrv 与每台 Broker 服务器保持长连接，并间隔 30s 检测 Broker 是否存活，如果检测到 Broker 宕机则从路由注册表中将其移除。</p>
-<p>Namesrv 是RocketMQ的寻址服务。用于把 Broker的路由信息做聚合。客户端依靠 Namesrv 决定去获取对应topic的路由信息，从而决定对哪些 Broker 做连接。</p>
-<ul>
-<li>Namesrv 是一个几乎无状态的结点，Namesrv 之间采取share-nothing的设计，互不通信。</li>
-</ul>
-<ul>
-<li>对于一个 Namesrv 集群列表，客户端连接 Namesrv 的时候，只会选择随机连接一个结点，以做到负载均衡。</li>
-</ul>
-<ul>
-<li>Namesrv 所有状态都从 Broker 上报而来，本身不存储任何状态，所有数据均在内存。</li>
-</ul>
-<ul>
-<li>如果中途所有 Namesrv 全都挂了，影响到路由信息的更新，不会影响 Producer 和 Broker 的通信。</li>
-</ul>
-<h3 id="路由元数据"><a href="#路由元数据" class="headerlink" title="路由元数据"></a>路由元数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 存储所有 Topic 的属性信息</span><br><span class="line"> * 一个 topic 对应 多个 Broker</span><br><span class="line"> */</span><br><span class="line">private final HashMap&lt;String/* topic */, List&lt;QueueData&gt;&gt; topicQueueTable;</span><br><span class="line">/**</span><br><span class="line"> * 存储 BrokerName 对应的属性信息</span><br><span class="line"> * BrokerName、所属集群名称、主备 Broker 地址（brokerId=0是主，非0是备）</span><br><span class="line"> */</span><br><span class="line">private final HashMap&lt;String/* brokerName */, BrokerData&gt; brokerAddrTable;</span><br><span class="line">/**</span><br><span class="line"> * 存储集群的信息</span><br><span class="line"> * 存储集群中所有 Broker 名称</span><br><span class="line"> */</span><br><span class="line">private final HashMap&lt;String/* clusterName */, Set&lt;String/* brokerName */&gt;&gt; clusterAddrTable;</span><br><span class="line">/**</span><br><span class="line"> * 存储Broker机器的实时状态</span><br><span class="line"> * 包含心跳的更新时间 lastUpdateTimestamp</span><br><span class="line"> */</span><br><span class="line">private final HashMap&lt;String/* brokerAddr */, BrokerLiveInfo&gt; brokerLiveTable;</span><br><span class="line">/**</span><br><span class="line"> * 存储过滤服务器信息</span><br><span class="line"> */</span><br><span class="line">private final HashMap&lt;String/* brokerAddr */, List&lt;String&gt;/* Filter Server */&gt; filterServerTable;</span><br></pre></td></tr></table></figure>
-
-<h3 id="路由注册"><a href="#路由注册" class="headerlink" title="路由注册"></a>路由注册</h3><p>通过 Broker 与 Namesrv 的心跳功能实现的。 </p>
-<p>Broker 启动时向集群中所有的 Namesrv 发送心跳，每隔30s向集群中所有 Namesrv 发送心跳包，Namesrv 收到 Broker 心跳包时会更新 brokerLiveTable 缓存中 BrokerLivelnfo 的 lastUpdateTimestamp，然后 NameServer 每隔10s扫描 brokerLiveTable 一次，如果连续120s没有收到心跳包，Namesrv 将移除该 Broker 的路由信息同时关闭Socket连接。</p>
-<h3 id="路由删除"><a href="#路由删除" class="headerlink" title="路由删除"></a>路由删除</h3><p>删除 topicQueueTable、 brokerAddrTable、 brokerLiveTable、 filterServerTable删除与该 Broker 相关的信息。</p>
-<ol>
-<li>Namesrv 定时扫描 brokerLiveTable 检测上次心跳包与 当前系统时间的时间差，如果时间戳大于120s，则需要移除该 Broker 信息 。</li>
-<li>Broker 在正常被关闭的情况下，会执行 unregisterBroker 方法。</li>
-</ol>
-<h3 id="路由发现"><a href="#路由发现" class="headerlink" title="路由发现"></a>路由发现</h3><p>RocketMQ 路由发现不是实时的，当 Topic 路由出现变化后，Namesrv 不主动推送给客户端，而是由客户端定时拉取主题最新的路由。</p>
-<p>当 RequestCode 等于 GET_ROUTEINTO_BY_TOPIC 时候就是获取路由信息，需要注意就是顺序消息的区分就是这个时候填充 orderTopicConf 来进行区别。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 顺序消息配置。</span><br><span class="line"> * 格式为--&gt; brokerName1:num1;brokerName2:num2</span><br><span class="line"> */</span><br><span class="line">private String orderTopicConf;</span><br></pre></td></tr></table></figure>
-
-<p>为了保证queue的顺序，这个顺序是固定的，生产端会使用这个顺序来进行选择发送，如果是顺序消息，通过这个顺序可以保证都落到同一个queue；如果不配置，如果broker宕机后，queue就会发生变化，无法保证顺序。</p>
-<h3 id="定时任务"><a href="#定时任务" class="headerlink" title="定时任务"></a>定时任务</h3><ol>
-<li>Broker 每隔30s给 Namesrv 发一次心跳。</li>
-<li>Namesrv 每隔1Os扫描一次 Broker，移除处于不激活状态的 Broker。</li>
-<li>Namesrv 每隔10分钟打印一次KV配置。</li>
-</ol>
-<h3 id="问题"><a href="#问题" class="headerlink" title="问题"></a>问题</h3><h4 id="Namesrv-是否支持动态添加？"><a href="#Namesrv-是否支持动态添加？" class="headerlink" title="Namesrv 是否支持动态添加？"></a>Namesrv 是否支持动态添加？</h4><blockquote>
-<p>解答：在启动 Broker 和 Clients 之前，我们需要提供的一个 Namesrv 地址列表来访问 Namesrv。在RocketMQ中，可以用四种方式完成。</p>
-<ol>
-<li>Programmatic Way<br>Broker 的配置文件中 broker.conf 指定 namesrvAddr=name-server-ip1:port;name-server-ip2:port</li>
-<li>Java Options<br>Java启动参数配置 rocketmq.namesrvv.addr</li>
-<li>Environment Variable<br>添加环境变量 NAMESRV_ADDR</li>
-<li>HTTP Endpoint<br>如果没有使用前面提到的方法指定名称服务器地址列表，RocketMQ将以每2分钟访问HTTP端点一次以获取和更新名称服务器地址列表，初始延迟10秒。<br>默认情况下，终点是：<code>http://jmenv.tbsite.net:8080/rocketmq/nsaddr</code><br>可以使用这个Java选项：rocketmq.namesrv.domain 覆盖 jmenv.tbsite.net ，你也可以使用这个Java选项 rocketmq.namesrv.domain.subgroup 覆盖 nsaddr 部分<br>如果在生产环境中运行RocketMQ<br>建议使用此方法，因为它提供了最大的灵活性——您可以动态地添加或删除名称服务器节点，而无需根据 Namesrv 的系统负载重新启动代理和客户端。</li>
-</ol>
-</blockquote>
-<blockquote>
-<blockquote>
-<p>优先级：（首先介绍的方法优先于后一种方法）<br>Programmatic Way &gt; Java Options &gt; Environment Variable &gt; HTTP Endpoint</p>
-</blockquote>
-</blockquote>
-<h4 id="因为-Producer-定时拉取-Namesrv-上-Broker-信息，就会存在-Namesrv-根据主题获取路由信息包含宕机的Broker，会导致消息发送失败，那么这种情况怎么处理？"><a href="#因为-Producer-定时拉取-Namesrv-上-Broker-信息，就会存在-Namesrv-根据主题获取路由信息包含宕机的Broker，会导致消息发送失败，那么这种情况怎么处理？" class="headerlink" title="因为 Producer 定时拉取 Namesrv 上 Broker 信息，就会存在 Namesrv 根据主题获取路由信息包含宕机的Broker，会导致消息发送失败，那么这种情况怎么处理？"></a>因为 Producer 定时拉取 Namesrv 上 Broker 信息，就会存在 Namesrv 根据主题获取路由信息包含宕机的Broker，会导致消息发送失败，那么这种情况怎么处理？</h4><blockquote>
-<p>解答：消息发送队列负载默认采用轮询机制，消息发送时默认选择重试机制来保证消息发送的高可用。当 Broker 宕机后，虽然消息发送者无法第一时间感知 Broker 宕机，但是当消息发送者向 Broker 发送消息返回异常后，生产者会在接下来一定时间内，例如5分钟内不会再次选择该 Broker上的队列，这样就规避了发生故障的 Broker，结合重试机制，巧妙实现消息发送的高可用。</p>
-</blockquote>
-<h4 id="RocketMQ为什么不使用ZooKeeper？"><a href="#RocketMQ为什么不使用ZooKeeper？" class="headerlink" title="RocketMQ为什么不使用ZooKeeper？"></a>RocketMQ为什么不使用ZooKeeper？</h4><blockquote>
-<p>解答：这个问题首先我们来看 ZooKeeper 能实现什么，选举、Node节点、数据强一致性，但是 Namesrv 采取share-nothing的设计，都是无状态节点，节点之间消息不需要同步数据，再者都是非持久化方式存储，综合考虑。</p>
-</blockquote>
-
-          
-        
-      
-    </div>
-    
-    
-    
-
-    
-
-    
-
-    
-
-    <footer class="post-footer">
-      
-
-      
-
       
 
       
       
-        <div class="post-eof"></div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/08/29/RocketMQ路由机制/" rel="next" title="RocketMQ路由机制">
+                <i class="fa fa-chevron-left"></i> RocketMQ路由机制
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
       
     </footer>
   </div>
@@ -609,10 +437,11 @@
   </article>
 
 
-    
-  </section>
 
-  
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -620,6 +449,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -640,8 +473,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -701,6 +543,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#MQ初窥门径"><span class="nav-number">1.</span> <span class="nav-text">MQ初窥门径</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#应用场景"><span class="nav-number">1.1.</span> <span class="nav-text">应用场景</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MQ概念模型"><span class="nav-number">1.2.</span> <span class="nav-text">MQ概念模型</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#接收消息"><span class="nav-number">1.2.1.</span> <span class="nav-text">接收消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#消费消息"><span class="nav-number">1.2.2.</span> <span class="nav-text">消费消息</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储"><span class="nav-number">1.2.3.</span> <span class="nav-text">存储</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#kafka"><span class="nav-number">1.2.4.</span> <span class="nav-text">kafka</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#rocketmq"><span class="nav-number">1.2.5.</span> <span class="nav-text">rocketmq</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#存储对比"><span class="nav-number">1.2.6.</span> <span class="nav-text">存储对比</span></a></li></ol></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -834,6 +692,10 @@
   
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
